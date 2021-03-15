@@ -49,7 +49,6 @@ function addImg (){
     if (preImg.includes(random1)){
         random1 = randomImg();
         }else{
-            preImg[0] = random1;
             n = 1;
         }
     }
@@ -61,20 +60,26 @@ function addImg (){
         if (random2 == random1 || preImg.includes(random2)){
             random2 = randomImg();
         }else{
-            preImg[1] = random2;
             n = 1;
         }
     }
+
+    
 
     n = 0;
     while(n < 1){
         if (random3 == random1 || random3 == random2 || preImg.includes(random3)){
             random3 = randomImg();
         }else{
-            preImg[2] = random3;
             n = 1;
         }
     }
+
+    preImg[0] = random1;
+    preImg[1] = random2;
+    preImg[2] = random3;
+
+    
 
     for(let i = 0;i < names.length;i++){
         if (random1 == paths[i]){
