@@ -114,10 +114,12 @@ container.addEventListener('click',clickHandler);
         addImg();
     }
     else{
-        let main = getElementById('main');
+        container.removeEventListener('click' , clickHandler);
+    
+        let main = document.getElementById('main');
         let div = document.createElement('div');
         let button = document.createElement('button');
-        button.setAttribute('resultButton');
+        button.setAttribute('id','resultButton');
         button.textContent = 'show result';
         div.appendChild(button);
         main.appendChild(div);
@@ -142,9 +144,10 @@ container.addEventListener('click',clickHandler);
         ul.appendChild(li);
         }
     }
-        container.removeEventListener('click' , clickHandler);
-    }
+        
         }
+
+    }
            
            
         
