@@ -32,7 +32,7 @@ for(let i = 0;i < names.length;i++){
 }
 
 function randomImg (){
-        let random = Math.floor(Math.random() * ((names.length-1) - 0));
+        let random = Math.floor(Math.random() * ((names.length) - 0));
         return object[random].path;
     } 
 
@@ -114,6 +114,17 @@ container.addEventListener('click',clickHandler);
         addImg();
     }
     else{
+        container.removeEventListener('click' , clickHandler);
+    
+        let main = document.getElementById('main');
+        let div = document.createElement('div');
+        let button = document.createElement('button');
+        button.setAttribute('id','resultButton');
+        button.textContent = 'show result';
+        div.appendChild(button);
+        main.appendChild(div);
+        button.addEventListener('click' , addResult);
+        function addResult (event){
         for (let i = 0;i < object.length;i++){
             let li = document.createElement('li');
             if(object[i].vote == 1){
@@ -133,7 +144,10 @@ container.addEventListener('click',clickHandler);
         ul.appendChild(li);
         }
     }
+        
         }
+
+    }
            
            
         
