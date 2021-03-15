@@ -32,7 +32,7 @@ for(let i = 0;i < names.length;i++){
 }
 
 function randomImg (){
-        let random = Math.floor(Math.random() * ((names.length-1) - 0));
+        let random = Math.floor(Math.random() * ((names.length) - 0));
         return object[random].path;
     } 
 
