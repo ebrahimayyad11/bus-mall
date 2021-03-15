@@ -114,6 +114,15 @@ container.addEventListener('click',clickHandler);
         addImg();
     }
     else{
+        let main = getElementById('main');
+        let div = document.createElement('div');
+        let button = document.createElement('button');
+        button.setAttribute('resultButton');
+        button.textContent = 'show result';
+        div.appendChild(button);
+        main.appendChild(div);
+        button.addEventListener('click' , addResult);
+        function addResult (event){
         for (let i = 0;i < object.length;i++){
             let li = document.createElement('li');
             if(object[i].vote == 1){
@@ -132,6 +141,8 @@ container.addEventListener('click',clickHandler);
 
         ul.appendChild(li);
         }
+    }
+        container.removeEventListener('click' , clickHandler);
     }
         }
            

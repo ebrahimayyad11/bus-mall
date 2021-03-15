@@ -72,3 +72,9 @@ p {
     font-size: x-large;
     margin-left: 300px;
 }
+
+
+#resultButton{
+    color: black;
+    background-color: rgba(3, 172, 121, 0.664);;
+}
