@@ -79,7 +79,7 @@ function addImg (){
     preImg[1] = random2;
     preImg[2] = random3;
 
-    
+
 
     for(let i = 0;i < names.length;i++){
         if (random1 == paths[i]){
@@ -139,13 +139,11 @@ container.addEventListener('click',clickHandler);
     else{
         container.removeEventListener('click' , clickHandler);
     
-        let main = document.getElementById('main');
-        let div = document.createElement('div');
+        let div = document.getElementById('buttonDiv');
         let button = document.createElement('button');
         button.setAttribute('id','resultButton');
         button.textContent = 'show result';
         div.appendChild(button);
-        main.appendChild(div);
         button.addEventListener('click' , addResult);
         function addResult (event){
         for (let i = 0;i < object.length;i++){
