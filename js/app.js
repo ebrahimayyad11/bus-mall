@@ -37,28 +37,49 @@ function randomImg (){
     } 
 
 
+    let preImg = [" "," "," "];
 
 function addImg (){
     let n = 0;
     let random1 = randomImg();
     let random2 = randomImg();
     let random3 = randomImg();
+    
     while(n < 1){
-        if (random2 != random1){
-            n = 1;
+    if (preImg.includes(random1)){
+        random1 = randomImg();
         }else{
-            random2 = randomImg();
+            n = 1;
         }
     }
 
     n = 0;
+
+
     while(n < 1){
-        if (random3 != random1 && random3 != random2){
-            n = 1;
+        if (random2 == random1 || preImg.includes(random2)){
+            random2 = randomImg();
         }else{
-            random3 = randomImg();
+            n = 1;
         }
     }
+
+    
+
+    n = 0;
+    while(n < 1){
+        if (random3 == random1 || random3 == random2 || preImg.includes(random3)){
+            random3 = randomImg();
+        }else{
+            n = 1;
+        }
+    }
+
+    preImg[0] = random1;
+    preImg[1] = random2;
+    preImg[2] = random3;
+
+
 
     for(let i = 0;i < names.length;i++){
         if (random1 == paths[i]){
@@ -90,6 +111,8 @@ function addImg (){
 
 addImg();
 
+
+
 let ul = document.getElementById('ul');
 
 
@@ -116,40 +139,82 @@ container.addEventListener('click',clickHandler);
     else{
         container.removeEventListener('click' , clickHandler);
     
-        let main = document.getElementById('main');
-        let div = document.createElement('div');
+        let div = document.getElementById('buttonDiv');
         let button = document.createElement('button');
         button.setAttribute('id','resultButton');
         button.textContent = 'show result';
         div.appendChild(button);
-        main.appendChild(div);
         button.addEventListener('click' , addResult);
         function addResult (event){
         for (let i = 0;i < object.length;i++){
             let li = document.createElement('li');
             if(object[i].vote == 1){
                 if(object[i].shown == 1){
-                    li.textContent = object[i].name + ': ' + object[i].vote + ' vote, '+ object[i].shown +' show';
+                    li.textContent = object[i].name + ': ' + object[i].vote + ' vote, '+ object[i].shown +' view';
                 }else{
-                    li.textContent = object[i].name + ': ' + object[i].vote + ' vote, '+ object[i].shown +' shows';
+                    li.textContent = object[i].name + ': ' + object[i].vote + ' vote, '+ object[i].shown +' views';
                 }
         } else{
             if(object[i].shown == 1){
-                li.textContent = object[i].name + ': ' + object[i].vote + ' votes, '+ object[i].shown +' show';
+                li.textContent = object[i].name + ': ' + object[i].vote + ' votes, '+ object[i].shown +' view';
             }else{
-                li.textContent = object[i].name + ': ' + object[i].vote + ' votes, '+ object[i].shown +' shows';
+                li.textContent = object[i].name + ': ' + object[i].vote + ' votes, '+ object[i].shown +' views';
             }
         }
 
         ul.appendChild(li);
         }
+
+        
     }
         
         }
 
+        let votes = [];
+    let views = [];
+
+    for(let i = 0;i < object.length;i++){
+        votes.push(object[i].vote);
+        views.push(object[i].shown);
     }
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'horizontalBar',
+    
+        // The data for our dataset
+        data: {
+            labels: names,
+            datasets: [{
+                label: 'votes',
+                backgroundColor: 'rgba(3, 172, 121, 0.664)',
+                borderColor: 'rgba(3, 172, 121, 0.664)',
+                data: votes
+            },
+        {
+            label: 'views',
+                backgroundColor: 'rgba(2, 88, 63, 0.664)',
+                borderColor: 'rgba(2, 88, 63, 0.664)',
+                data: views
+        }]
+            
+        },
+    
+        // Configuration options go here
+        options: {}
+    });
+
+
+    }
+
+    
+
+
+    
+
            
            
-        
+    
        
        
