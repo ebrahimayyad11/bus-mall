@@ -37,26 +37,42 @@ function randomImg (){
     } 
 
 
+    let preImg = [" "," "," "];
 
 function addImg (){
     let n = 0;
     let random1 = randomImg();
     let random2 = randomImg();
     let random3 = randomImg();
+    
     while(n < 1){
-        if (random2 != random1){
-            n = 1;
+    if (preImg.includes(random1)){
+        random1 = randomImg();
         }else{
+            preImg[0] = random1;
+            n = 1;
+        }
+    }
+
+    n = 0;
+
+
+    while(n < 1){
+        if (random2 == random1 || preImg.includes(random2)){
             random2 = randomImg();
+        }else{
+            preImg[1] = random2;
+            n = 1;
         }
     }
 
     n = 0;
     while(n < 1){
-        if (random3 != random1 && random3 != random2){
-            n = 1;
-        }else{
+        if (random3 == random1 || random3 == random2 || preImg.includes(random3)){
             random3 = randomImg();
+        }else{
+            preImg[2] = random3;
+            n = 1;
         }
     }
 
