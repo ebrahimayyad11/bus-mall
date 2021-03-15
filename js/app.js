@@ -90,6 +90,8 @@ function addImg (){
 
 addImg();
 
+
+
 let ul = document.getElementById('ul');
 
 
@@ -129,27 +131,71 @@ container.addEventListener('click',clickHandler);
             let li = document.createElement('li');
             if(object[i].vote == 1){
                 if(object[i].shown == 1){
-                    li.textContent = object[i].name + ': ' + object[i].vote + ' vote, '+ object[i].shown +' show';
+                    li.textContent = object[i].name + ': ' + object[i].vote + ' vote, '+ object[i].shown +' view';
                 }else{
-                    li.textContent = object[i].name + ': ' + object[i].vote + ' vote, '+ object[i].shown +' shows';
+                    li.textContent = object[i].name + ': ' + object[i].vote + ' vote, '+ object[i].shown +' views';
                 }
         } else{
             if(object[i].shown == 1){
-                li.textContent = object[i].name + ': ' + object[i].vote + ' votes, '+ object[i].shown +' show';
+                li.textContent = object[i].name + ': ' + object[i].vote + ' votes, '+ object[i].shown +' view';
             }else{
-                li.textContent = object[i].name + ': ' + object[i].vote + ' votes, '+ object[i].shown +' shows';
+                li.textContent = object[i].name + ': ' + object[i].vote + ' votes, '+ object[i].shown +' views';
             }
         }
 
         ul.appendChild(li);
         }
+
+        
     }
         
         }
 
+        let votes = [];
+    let views = [];
+
+    for(let i = 0;i < object.length;i++){
+        votes.push(object[i].vote);
+        views.push(object[i].shown);
     }
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'horizontalBar',
+    
+        // The data for our dataset
+        data: {
+            labels: names,
+            datasets: [{
+                label: 'votes',
+                backgroundColor: 'rgba(3, 172, 121, 0.664)',
+                borderColor: 'rgba(3, 172, 121, 0.664)',
+                data: votes
+            },
+        {
+            label: 'views',
+                backgroundColor: 'rgba(2, 88, 63, 0.664)',
+                borderColor: 'rgba(2, 88, 63, 0.664)',
+                data: views
+        }]
+            
+        },
+    
+        // Configuration options go here
+        options: {}
+    });
+
+
+    }
+
+    
+
+
+    
+
            
            
-        
+    
        
        
