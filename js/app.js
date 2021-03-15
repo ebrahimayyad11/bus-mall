@@ -16,6 +16,8 @@ let img2 = document.getElementById('img2');
 
 let img3 = document.getElementById('img3');
 
+let imgs = [img1,img2,img3];
+
 function product (name,path){
     this.name = name;
     this.path = path;
@@ -30,7 +32,7 @@ for(let i = 0;i < names.length;i++){
 }
 
 function randomImg (){
-        let random = Math.floor(Math.random() * ((names.length-1) - 0)+0);
+        let random = Math.floor(Math.random() * ((names.length-1) - 0));
         return object[random].path;
     } 
 
@@ -61,13 +63,10 @@ function addImg (){
     for(let i = 0;i < names.length;i++){
         if (random1 == paths[i]){
             object[i].shown += 1;
-            console.log(object[i].shown);
         }else if (random2 == paths[i]){
             object[i].shown += 1;
-            console.log(object[i].shown);
         }else if (random3 == paths[i]){
             object[i].shown += 1;
-            console.log(object[i].shown);
         }
     }
 
@@ -75,12 +74,68 @@ function addImg (){
 
     
     img1.setAttribute('src', random1);
+    img1.setAttribute('title', random1);
+
 
     img2.setAttribute('src', random2);
+    img2.setAttribute('title', random2);
+
 
     img3.setAttribute('src', random3);
+    img3.setAttribute('title', random3);
+
 
 
 }
 
 addImg();
+
+let ul = document.getElementById('ul');
+
+
+let container = document.getElementById('container');
+
+
+let counter = 0;
+
+container.addEventListener('click',clickHandler);
+
+    function clickHandler(event){
+        counter++;
+           for(let i = 0;i< paths.length;i++){
+               if(object[i].path === event.target.title){
+                   object[i].vote++; 
+               }
+            
+           }
+           
+           console.log(counter);
+           if(counter != 25){
+        addImg();
+    }
+    else{
+        for (let i = 0;i < object.length;i++){
+            let li = document.createElement('li');
+            if(object[i].vote == 1){
+                if(object[i].shown == 1){
+                    li.textContent = object[i].name + ': ' + object[i].vote + ' vote, '+ object[i].shown +' show';
+                }else{
+                    li.textContent = object[i].name + ': ' + object[i].vote + ' vote, '+ object[i].shown +' shows';
+                }
+        } else{
+            if(object[i].shown == 1){
+                li.textContent = object[i].name + ': ' + object[i].vote + ' votes, '+ object[i].shown +' show';
+            }else{
+                li.textContent = object[i].name + ': ' + object[i].vote + ' votes, '+ object[i].shown +' shows';
+            }
+        }
+
+        ul.appendChild(li);
+        }
+    }
+        }
+           
+           
+        
+       
+       

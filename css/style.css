@@ -16,22 +16,22 @@ header img{
     width: 100px;
     height: 40px;
     margin-left:20px;
-    /* position: relative;
-    top: 10px; */
     float: left;
 }
 
 
-#continer div img{
+#container div img{
     width: 20%;
     height: 100px;
 }
+
+
 
 #resultDiv{
     float: left;
     border-style: solid;
     border-color:  rgba(3, 172, 121, 0.664);
-    width: 17%;
+    width: 19%;
     margin:5px;
     height: 228px;
 }
@@ -59,9 +59,14 @@ li{
 
 
 footer{
-    width: 100%;
+    width: 97.5%;
     height: 40px;
     background-color: rgba(3, 172, 121, 0.664);
     position:absolute;
     bottom: 0px;
+}
+
+p{
+    color: rgba(3, 172, 121, 0.664);
+    margin-top: 50px;
 }
