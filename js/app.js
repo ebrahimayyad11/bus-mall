@@ -167,10 +167,8 @@ container.addEventListener('click',clickHandler);
 
         
     }
-        
-        }
 
-        let votes = [];
+    let votes = [];
     let views = [];
 
     for(let i = 0;i < object.length;i++){
@@ -204,6 +202,10 @@ container.addEventListener('click',clickHandler);
         // Configuration options go here
         options: {}
     });
+        
+        }
+
+       
 
 
     }
