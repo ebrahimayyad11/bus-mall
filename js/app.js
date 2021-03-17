@@ -111,7 +111,12 @@ function addImg (){
 
 addImg();
 
+let votes = [];
+let views = [];
 
+
+if (localStorage.length > 0) {
+   
 
 let ul = document.getElementById('ul');
 
@@ -137,7 +142,12 @@ container.addEventListener('click',clickHandler);
         addImg();
     }
     else{
+
+        
+
+
         container.removeEventListener('click' , clickHandler);
+        
     
         let div = document.getElementById('buttonDiv');
         let button = document.createElement('button');
@@ -168,8 +178,6 @@ container.addEventListener('click',clickHandler);
         
     }
 
-    let votes = [];
-    let views = [];
 
     for(let i = 0;i < object.length;i++){
         votes.push(object[i].vote);
@@ -202,6 +210,130 @@ container.addEventListener('click',clickHandler);
         // Configuration options go here
         options: {}
     });
+
+    
+        
+        }
+
+       
+
+
+    }
+
+   
+
+    
+} else {
+
+
+
+    votes = JSON.parse(localStorage.getItem('votes'));
+    let localViews = JSON.parse(localStorage.getItem('views'));
+
+    
+    let ul = document.getElementById('ul');
+    
+    
+    let container = document.getElementById('container');
+    
+    
+    let counter = 0;
+    
+    container.addEventListener('click',clickHandler);
+    
+    function clickHandler(event){
+        counter++;
+           for(let i = 0;i< paths.length;i++){
+               if(object[i].path === event.target.title){
+                   votes[i]++;
+               }
+            
+           }
+           
+           console.log(counter);
+           if(counter != 25){
+        addImg();
+    }
+    else{
+
+        
+localStorage.setItem('votes' , votes);
+localStorage.setItem('views' , views);
+
+console.log(votes);
+console.log(views);
+
+        container.removeEventListener('click' , clickHandler);
+
+        for(let i = 0;i < object.length;i++){
+            views.push((object[i].shown + localViews[i]));
+        }
+    
+        let div = document.getElementById('buttonDiv');
+        let button = document.createElement('button');
+        button.setAttribute('id','resultButton');
+        button.textContent = 'show result';
+        div.appendChild(button);
+        button.addEventListener('click' , addResult);
+        function addResult (event){
+        for (let i = 0;i < object.length;i++){
+            let li = document.createElement('li');
+            if(localVotes[i] == 1){
+                if(object[i].shown == 1){
+                    li.textContent = object[i].name + ': ' + votes[i] + ' vote, '+ localViews[i] +' view';
+                }else{
+                    li.textContent = object[i].name + ': ' + votes[i] + ' vote, '+ localViews[i] +' views';
+                }
+        } else{
+            if(object[i].shown == 1){
+                li.textContent = object[i].name + ': ' + votes[i] + ' votes, '+ localViews[i] +' view';
+                }else{
+                    li.textContent = object[i].name + ': ' + votes[i] + ' votes, '+ localViews[i] +' views';
+            }
+        }
+    
+        ul.appendChild(li);
+        }
+    
+               
+        
+    }
+
+
+    
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'horizontalBar',
+    
+        // The data for our dataset
+        data: {
+            labels: names,
+            datasets: [{
+                label: 'votes',
+                backgroundColor: 'rgba(3, 172, 121, 0.664)',
+                borderColor: 'rgba(3, 172, 121, 0.664)',
+                data: localVotes
+            },
+        {
+            label: 'views',
+                backgroundColor: 'rgba(2, 88, 63, 0.664)',
+                borderColor: 'rgba(2, 88, 63, 0.664)',
+                data: views
+        }]
+            
+        },
+    
+        // Configuration options go here
+        options: {}
+    });
+
+    localStorage.setItem('votes' , votes);
+localStorage.setItem('views' , views);
+
+console.log(votes);
+console.log(views);
         
         }
 
@@ -212,11 +344,18 @@ container.addEventListener('click',clickHandler);
 
     
 
+}
+
+
+
+
+
 
     
 
            
-           
+
+
     
        
        
