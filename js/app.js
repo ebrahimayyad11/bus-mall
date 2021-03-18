@@ -1,5 +1,5 @@
 "use strict";
-
+// the array of the images names
 let names = [
   "bag",
   "banana",
@@ -23,6 +23,7 @@ let names = [
   "wine-glass",
 ];
 
+// the array of the images paths
 let paths = [
   "./img/bag.jpg",
   "./img/banana.jpg",
@@ -46,8 +47,10 @@ let paths = [
   "./img/wine-glass.jpg",
 ];
 
+// an array to hold all of the objects
 let object = [];
 
+// the variables that contains the id's of the three images that will appear to the user
 let img1 = document.getElementById("img1");
 
 let img2 = document.getElementById("img2");
@@ -56,6 +59,7 @@ let img3 = document.getElementById("img3");
 
 let imgs = [img1, img2, img3];
 
+// the constructor
 function product(name, path) {
   this.name = name;
   this.path = path;
@@ -63,17 +67,22 @@ function product(name, path) {
   this.vote = 0;
 }
 
+// a for loop to add all the objects to the array of object
 for (let i = 0; i < names.length; i++) {
   object.push(new product(names[i], paths[i]));
 }
 
+// to return the random path of the images
 function randomImg() {
   let random = Math.floor(Math.random() * (names.length - 0));
   return object[random].path;
 }
 
+// this array used to not allow the repeat image every time the user choose a product
 let preImg = [" ", " ", " "];
 
+
+// this function is to add the images into the HTML page
 function addImg() {
   let n = 0;
   let random1 = randomImg();
@@ -133,9 +142,12 @@ function addImg() {
 
 addImg();
 
+// these arrays is to add all of the votes and the views into it
 let votes = [];
 let views = [];
 
+
+// this if statement is to check if the local storage is empty or not and then it will set the items into it and get from it 
 console.log(localStorage.length);
 if (localStorage.length == 0) {
   let ul = document.getElementById("ul");
